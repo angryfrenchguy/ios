@@ -1,0 +1,46 @@
+.container {
+    width: 100%;
+}
+input[type="date"]
+{
+    border: none;
+    -webkit-appearance: none;
+    font-size: 2.5em;
+    font-weight: 700;
+    width: 100%;
+    margin: 0 auto;
+/*    text-align:right;*/
+}
+
+input[type="time"]
+{
+    border: none;
+    -webkit-appearance: none;
+    font-size: 80px;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+}
+
+input[type="number"], input[type="text"]
+{
+    width: 100%;
+    font-size: 30px;
+    height: 50px;
+}
+
+select {
+    width: 100%;
+    font-size: 30px;
+    height: 50px;
+    border: none;
+    -webkit-appearance: none;
+}
+
+#log {
+    background-color: #fcc41b;
+}
+
+#go,#stop,#log {
+   line-height: 70px; 
+}
