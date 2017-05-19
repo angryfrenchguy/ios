@@ -13,17 +13,19 @@ if ($conx->connect_error) {
     $idunique = $_POST['idUnique'];
 
     $maxid = mysqli_query($conx, 
-                "SELECT MAX(idUnique) FROM feuille_de_temps WHERE idUnique LIKE '" . $idunique . "%%'");
+//                "SELECT MAX(idUnique) FROM feuille_de_temps WHERE idUnique LIKE '" . $idunique . "%%'");
+    "SELECT MIN(idUnique) FROM feuille_de_temps WHERE date=0000-00-00 AND contrat=0");
     $responseanswer = mysqli_fetch_assoc($maxid);
 
-if( $responseanswer['MAX(idUnique)'] == 0) {
-//    $idunique = $idunique + "00"; 
-    $xxx = "oui";
-    $idunique = $idunique . "00";
-} else {
-    $xxx = "non";
-    $idunique = $responseanswer['MAX(idUnique)'] + 1;
-}
+//if( $responseanswer['MAX(idUnique)'] == 0) {
+////    $idunique = $idunique + "00"; 
+//    $xxx = "oui";
+//    $idunique = $idunique . "00";
+//} else {
+//    $xxx = "non";
+//    $idunique = $responseanswer['MAX(idUnique)'] + 1;
+//}
+    $idunique = $responseanswer['MIN(idUnique)'];
 
     
 
@@ -40,7 +42,20 @@ if( $responseanswer['MAX(idUnique)'] == 0) {
                 "','" . $_POST[odoOUT] .
                 "','" . $_POST[etat] .
                 "','" . $idunique .
-                "');" 
+                "')
+                ON DUPLICATE KEY UPDATE
+                date='" . $_POST[date] .
+                "', contrat='" . $_POST[contrat] .
+                "', client='" . $_POST[client] .
+                "', bus ='" . $_POST[bus] .
+                "', odoIN ='" . $_POST[odoIN] .
+                "', odoOUT ='" . $_POST[odoOUT] .
+                "', odoTOTAL ='" . $_POST[odoTOTAL] .
+                "', tempsIN ='" . $_POST[tempsIN] .
+                "', tempsOUT ='" . $_POST[tempsOUT] .
+                "', tempsTOTAL ='" . $_POST[tempsTOTAL] .
+                "', etat ='" . $_POST[etat] .
+                "'" 
     );
 
 $conx->close();

@@ -19,15 +19,15 @@ function heure() {
     champSTOP.value = heure;
 }
 
-function getID() {
-     $("#formGO #formLOG #formSTOP").submit( function(eventObj) {
+function getID(form, date) {
+     $(form).submit( function(eventObj) {
 //         Est-ce que je peux utiliser la date GO? Est-ce que je peux/dois utiliser une date universelle?
-         var semaine = document.getElementById('dateGO').value;
+         var semaine = document.getElementById(date).value;
          semaine = moment(semaine, 'L').format('YYYYww');
          $('<input />').attr('number', 'hidden')
           .attr('name', "idUnique")
           .attr('value', semaine)
-          .appendTo('#formGO #formLOG #formSTOP');
+          .appendTo(form);
       return true;
   });
 }
