@@ -29,10 +29,15 @@ if( $responseanswer['MAX(idUnique)'] == 0) {
 
 
     mysqli_query($conx, 
-                "INSERT INTO feuille_de_temps (date, tempsIN, odoIN, etat, idUnique) VALUES ('"
+                "INSERT INTO feuille_de_temps (date, tempsIN, tempsOUT, contrat, client, bus, odoIN, odoOUT, etat, idUnique) VALUES ('"
                 . $_POST[date] .
                 "','" . $_POST[tempsIN] .
+                "','" . $_POST[tempsOUT] .
+                "','" . $_POST[contrat] .
+                "','" . $_POST[client] .
+                "','" . $_POST[bus] .
                 "','" . $_POST[odoIN] .
+                "','" . $_POST[odoOUT] .
                 "','" . $_POST[etat] .
                 "','" . $idunique .
                 "');" 
