@@ -12,23 +12,15 @@ if ($conx->connect_error) {
 
     $idunique = $_POST['idUnique'];
 
-    $maxid = mysqli_query($conx, 
-//                "SELECT MAX(idUnique) FROM feuille_de_temps WHERE idUnique LIKE '" . $idunique . "%%'");
-    "SELECT MIN(idUnique) FROM feuille_de_temps WHERE date=0000-00-00 AND contrat=0");
-    $responseanswer = mysqli_fetch_assoc($maxid);
+    $minid = mysqli_query($conx,
+                "SELECT MIN(idUnique) FROM feuille_de_temps WHERE date=0000-00-00 AND contrat=0 AND client='' AND bus=0 AND odoIN=0 AND odoOUT=0 AND odoTOTAL=0 AND tempsIN='' AND tempsOUT='' AND tempsTOTAL='' AND etat=''");
+    $minireponse = mysqli_fetch_assoc($minid);
 
-//if( $responseanswer['MAX(idUnique)'] == 0) {
-////    $idunique = $idunique + "00"; 
-//    $xxx = "oui";
-//    $idunique = $idunique . "00";
-//} else {
-//    $xxx = "non";
-//    $idunique = $responseanswer['MAX(idUnique)'] + 1;
-//}
-    $idunique = $responseanswer['MIN(idUnique)'];
+//    if($minid == 0)
 
-    
+    $idunique = $minireponse['MIN(idUnique)'];
 
+    $reponsemax = $idunique - 1;
 
     mysqli_query($conx, 
                 "INSERT INTO feuille_de_temps (date, tempsIN, tempsOUT, contrat, client, bus, odoIN, odoOUT, etat, idUnique) VALUES ('"
@@ -58,9 +50,13 @@ if ($conx->connect_error) {
                 "'" 
     );
 
+    mysqli_query($conx, 
+                "UPDATE TABLE feuille_de_temps SET odoOUT ='" . $_POST[odoIN] . "' WHERE idUnique='" . $reponsemax . "'");
+
 $conx->close();
 
-echo "RESPONSEANSWER: " . json_encode($responseanswer['MAX(idUnique)']) . "<br>" . 
+echo "reponsemax: " . json_encode($reponsemax) . "<br>" . 
 "IDUNIQUE: " . json_encode($idunique) . "<br>" .
+"minid: " . json_encode($minid) . "<br>" .
 "POST: " . json_encode($_POST) . "<br>" .
 "égale 0?" . json_encode($xxx);
