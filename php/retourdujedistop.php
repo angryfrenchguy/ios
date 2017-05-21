@@ -34,35 +34,7 @@ if ($conx->connect_error) {
     $iddelaligneavant = $idunique - 1;
 
     mysqli_query($conx, 
-                "INSERT INTO feuille_de_temps (date, tempsIN, tempsOUT, contrat, client, bus, odoIN, odoOUT, etat, idUnique) VALUES ('"
-                . $_POST[date] .
-                "','" . $_POST[tempsIN] .
-                "','" . $_POST[tempsOUT] .
-                "','" . $_POST[contrat] .
-                "','" . $_POST[client] .
-                "','" . $_POST[bus] .
-                "','" . $_POST[odoIN] .
-                "','" . $_POST[odoOUT] .
-                "','" . $_POST[etat] .
-                "','" . $idunique .
-                "')
-                ON DUPLICATE KEY UPDATE
-                date='" . $_POST[date] .
-                "', contrat='" . $_POST[contrat] .
-                "', client='" . $_POST[client] .
-                "', bus ='" . $_POST[bus] .
-                "', odoIN ='" . $_POST[odoIN] .
-                "', odoOUT ='" . $_POST[odoOUT] .
-                "', odoTOTAL ='" . $_POST[odoTOTAL] .
-                "', tempsIN ='" . $_POST[tempsIN] .
-                "', tempsOUT ='" . $_POST[tempsOUT] .
-                "', tempsTOTAL ='" . $_POST[tempsTOTAL] .
-                "', etat ='" . $_POST[etat] .
-                "'" 
-    );
-
-    mysqli_query($conx, 
-                "UPDATE TABLE feuille_de_temps SET odoOUT =" . $_POST[odoOUT] . " WHERE idUnique=" . $iddelaligneavant);
+                "UPDATE feuille_de_temps SET odoOUT='" . $_POST[odoOUT] . "', tempsOUT='" . $_POST[tempsOUT] . "' WHERE idUnique='" . $iddelaligneavant . "'");
 
 $conx->close();
 
