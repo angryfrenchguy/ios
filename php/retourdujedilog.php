@@ -14,16 +14,14 @@ if ($conx->connect_error) {
     $maxid = mysqli_query($conx, 
                  "SELECT MAX(idUnique) FROM feuille_de_temps WHERE idUnique LIKE '" . $idunique . "%%'");
     $maxid = mysqli_fetch_assoc($maxid);
-    $maxid1 = $maxid['MAX(idUnique)'];
+    $maxid = $maxid['MAX(idUnique)'];
 
-    if( $maxid1 === null) { 
-        $xxx = "Il n'y a pas déjà de lignes de cette semaine";
+    if( $maxid === null) { 
         $maxid2 = $idunique . "00";
         $insertnvlleligne;
     } else {
-        $xxx = "Il y a déjà des entrées de données pour cette semaine";
-        $maxid2 = $maxid1 + 1;
-        $iddelaligneavant = $maxid1;
+        $maxid2 = $maxid + 1;
+        $iddelaligneavant = $maxid;
         mysqli_query($conx, 
                 "INSERT INTO feuille_de_temps (date, odoIN, etat, idUnique) VALUES ('" 
                  . $_POST[date] .

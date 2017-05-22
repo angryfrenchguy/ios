@@ -14,19 +14,16 @@ if ($conx->connect_error) {
 
     $minid = mysqli_query($conx,
                 "SELECT MIN(idUnique) FROM feuille_de_temps WHERE date=0000-00-00 AND contrat=0 AND client='' AND bus=0 AND odoIN=0 AND odoOUT=0 AND odoTOTAL=0 AND tempsIN='' AND tempsOUT='' AND tempsTOTAL='' AND etat=''");
-    $minireponse = mysqli_fetch_assoc($minid);
+    $minid = mysqli_fetch_assoc($minid);
 
     $maxid = mysqli_query($conx, 
                  "SELECT MAX(idUnique) FROM feuille_de_temps WHERE idUnique LIKE '" . $idunique . "%%'");
-    $reponsemax = mysqli_fetch_assoc($maxid);
+    $maxid = mysqli_fetch_assoc($maxid);
 
-    if( $reponsemax['MAX(idUnique)'] == null) {
-    //    $idunique = $idunique + "00"; 
-        $xxx = "oui";
+    if( $maxid['MAX(idUnique)'] == null) {
         $idunique = $idunique . "00";
     } else {
-        $xxx = "non";
-        $idunique = $reponsemax['MAX(idUnique)'] + 1;
+        $idunique = $maxid['MAX(idUnique)'] + 1;
     }
 
 //    $idunique = $minireponse['MIN(idUnique)'];
