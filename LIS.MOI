@@ -1,0 +1,10 @@
+# Remplisseur
+
+*Une application pour logger tes heures sur ta feuille de temps*
+
+## À noter
+
+- Il appert que PhoneGap et Bootstrap ne jouent pas bien ensemble. Tu peux la tester avec le serveur de MAMP.
+
+- Tu *avais* perdu l'historique git d'avant le Macbook Pro. cette version a étée downloadée de ton serveur Gandi.
+- Tu as fais un copier-coller du fichié .git de la version que tu as récupéré de Time Machine, mais tu as gardé la version de gandi
