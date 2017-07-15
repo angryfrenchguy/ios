@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <!--<html  manifest="cache.manifest" lang="fr">-->
 <html lang="fr">
-  
+
   <head>
     <meta charset="utf-8">
-      
+
 <!--    Viewport-->
 <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
     <meta name = "viewport" content = "width=device-width,
-       initial-scale = 1, user-scalable = no"> 
+       initial-scale = 1, user-scalable = no">
     <meta name="apple-mobile-web-app-capable"
       content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style"
       content="default" />
-      
-      
+
+
     <title>Client</title>
-      
+
 <!--      Images + logos-->
-      
+
     <link rel="apple-touch-startup-image" href="skull.png">
     <link rel="apple-touch-icon" href="styleclient/skull.png">
 
 <!-- Bootstrap -->
     <link href="styleclient/bootstrap.css" rel="stylesheet">
-      
+
 <!--      Style-->
-      
+
     <link href="styleclient/style.css" rel="stylesheet">
 
   </head>
-  
+
   <body>
-      
+
+    <br>
+    <br>
+
     <div class="container">
-      
-    <h1>Application</h1>
-        
+
         <a id="go" href="#dataGO" class="btn btn-block btn-lg btn-success" data-toggle="collapse" >GO</a>
-        
+
         <div id="dataGO" class="collapse">
             <form id="formGO" role="form" method="post" action="php/retourdujedi.php">
                 <br>
@@ -54,7 +55,8 @@
                 <br>
                 <input id="odoInGO" name="odoIN" type="number" inputmode="numeric" pattern="[0-9]*" placeholder="odomètre">
                 <br><br>
-                <select name="etat" form="formGO" placeholder="Province ou État" value="QC">
+                <select id="etatGO" class="etat" name="etat" form="formGO" placeholder="Province ou État" value="erreur">
+                    <option value="erreur">État?</option>
                     <option value="QC">Québec</option>
 	                <option value="ON">Ontario</option>
 	                <option value="NY">New York</option>
@@ -110,20 +112,20 @@
                     <option value="WV">West Virginia</option>
                     <option value="WI">Wisconsin</option>
                     <option value="WY">Wyoming</option>
-                </select>   
+                </select>
                 <br><br>
                 <input id="submitGO" type="submit" value="ENVOYER" class="btn btn-lg btn-primary btn-block" onclick="getID('#formGO','dateGO')">
-                
+
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">
-                        <?php echo $result; ?>	
+                        <?php echo $result; ?>
                     </div>
                 </div>
             </form>
         </div>
-        
-    
-        
+
+
+
     <a id="stop" href="#dataSTOP" class="btn btn-block btn-lg btn-danger" data-toggle="collapse">STOP</a>
         <div id="dataSTOP" class="collapse">
             <form id="formSTOP" role="form" method="post" action="php/retourdujedistop.php">
@@ -134,7 +136,8 @@
                 <br><br>
                 <input id="odoOutSTOP" name="odoOUT" type="number" inputmode="numeric" pattern="[0-9]*" placeholder="odomètre">
                 <br><br>
-                <select name="etat" form="formSTOP" placeholder="Province ou État" value="QC">
+                <select id="etatSTOP" class="etat" name="etat" form="formSTOP" placeholder="Province ou État" value="erreur">
+                    <option value="erreur">État?</option>
                     <option value="QC">Québec</option>
 	                <option value="ON">Ontario</option>
 	                <option value="NY">New York</option>
@@ -193,17 +196,17 @@
                 </select>
                 <br><br>
                 <input id="submitSTOP" type="submit" value="ENVOYER" class="btn btn-lg btn-primary btn-block" onclick="getID('#formSTOP','dateSTOP')">
-                
+
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">
-                        <?php echo $result; ?>	
+                        <?php echo $result; ?>
                     </div>
                 </div>
             </form>
             </div>
-        
+
     <a id="log" href="#dataLOG" class="btn btn-block btn-lg log" data-toggle="collapse">LOG</a>
-        
+
         <div id="dataLOG" class="collapse">
             <form id="formLOG" role="form" method="post" action="php/retourdujedilog.php">
                 <br>
@@ -213,7 +216,8 @@
                 <br><br>
                 <input id="odoINLog" name="odoIN" type="number" inputmode="numeric" pattern="[0-9]*"placeholder="odomètre">
                 <br><br>
-                <select id="etatLOG" name="etat" form="formLOG" placeholder="Province ou État" value="QC">
+                <select id="etatLOG" class="etat" name="etat" form="formLOG" placeholder="Province ou État" value="erreur">
+                    <option value="erreur">État?</option>
                     <option value="QC">Québec</option>
 	                <option value="ON">Ontario</option>
 	                <option value="NY">New York</option>
@@ -269,13 +273,13 @@
                     <option value="WV">West Virginia</option>
                     <option value="WI">Wisconsin</option>
                     <option value="WY">Wyoming</option>
-                </select>   
+                </select>
                 <br><br>
                 <input id="submitLOG" type="submit" value="ENVOYER" class="btn btn-lg btn-primary btn-block" onclick="getID('#formLOG','dateLOG')">
-                
+
                 <div class="form-group">
                     <div class="col-sm-10 col-sm-offset-2">
-                        <?php echo $result; ?>	
+                        <?php echo $result; ?>
                     </div>
                 </div>
         </form>
@@ -283,22 +287,22 @@
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../feuille_de_route/code/jquery-3.2.0.min.js?=v1"></script>
+    <script src="codeclient/jquery-3.2.0.min.js?=v1"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="codeclient/bootstrap.min.js?=v1"></script>
-    <script src="../feuille_de_route/code/moment-with-locales.js?=v1"></script>
+    <script src="codeclient/moment-with-locales.js?=v1"></script>
     <script src="codeclient/code.js?=v1"></script>
- 
+
       <script>
       $(document).ready(function() {
           moment.locale('fr-CA');
           heure();
           date();
-//          getID();
+          getLocation();
       });
-    
+
       </script>
-      
-      
+
+
   </body>
 </html>
