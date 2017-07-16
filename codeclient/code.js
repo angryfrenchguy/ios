@@ -1,6 +1,6 @@
 function date() {
-    var date = new Date().toISOString().substring(0, 10);
-//    var date = moment().format('LL');
+    // var date = new Date().toISOString().substring(0, 10); // Pourquoi the fuck je l'avais fait avec new Date et pas moments.js??
+    var date = moment().format('L');
     var champGO = document.querySelector('#dateGO');
     var champLOG = document.querySelector('#dateLOG');
     var champSTOP = document.querySelector('#dateSTOP');
@@ -57,14 +57,14 @@ function showPosition(position) {
         error: function (request, status, error) {
             alert(error);
             console.log(request.statusText);
-            
+
             document.getElementById('etatGO').value = "erreur";
             document.getElementById('etatLOG').value = "erreur";
             document.getElementById('etatSTOP').value = "erreur";
     }
-    
-    
-//    console.log("Latitude: " + position.coords.latitude + 
+
+
+//    console.log("Latitude: " + position.coords.latitude +
 //    "<br>Longitude: " + position.coords.longitude);
 });
 
