@@ -8,3 +8,7 @@
 
 - Tu *avais* perdu l'historique git d'avant le Macbook Pro. cette version a étée downloadée de ton serveur Gandi.
 - Tu as fais un copier-coller du fichié .git de la version que tu as récupéré de Time Machine, mais tu as gardé la version de gandi
+
+## Todo
+
+- Pour que la case input n'apparaisse plus quand tu submit, il faudrait peut-être la créer d'avance, invisible, puis seulement changer la valeur on submit. (?)
